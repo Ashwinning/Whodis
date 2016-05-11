@@ -15,16 +15,12 @@ function InitializeMutationObserver()
 
     var config = {
       attributes: true,
-      childList: false,
-      characterData: false
+      childList: true,
+      characterData: true,
+      subtree: true
     };
 
-    var observer = new MutationObserver(function(mutations) 
-    {
-        
-        
-        InjectWhoDisDiv();
-    });
+    var observer = new MutationObserver(debounce(InjectWhoDisDiv(), 100));
 
     observer.observe(target, config);
 }
