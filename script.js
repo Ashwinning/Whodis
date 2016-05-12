@@ -1,12 +1,11 @@
 $(document).ready(function()
 {   
-    ready('#profile_popup', function(element)
-    {
-        InjectWhoDisDiv();
-    });  
+    InitializeMutationObserver();
 });
 
 function InjectWhoDisDiv()
 {
+    console.log('Injecting');
     $('.profile-card').append('<span class="spinner-bigger"></span>');
 }
+
