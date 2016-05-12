@@ -5,7 +5,9 @@ $(document).ready(function()
 
 function InjectWhoDisDiv()
 {
-    console.log('Injecting');
-    $('.profile-card').append('<span class="spinner-bigger"></span>');
+    console.log($('#profile_popup').data());
+    //$('.profile-card').append('<span class="spinner-bigger"></span>');
+    $('.profile-card').append($('#profile_popup').data('screenName'));
+
 }
 
