@@ -1,0 +1,25 @@
+{
+"manifest_version": 2,
+
+"name": "Whodis for twitter.",
+"description": "Allows you to add custom notes to twitter profiles.",
+"version": "1.0",
+
+"content_scripts":
+[
+  {
+  "run_at" :"document_end",
+  "matches": ["http://*.twitter.com/*", "http://twitter.com/*", "https://*.twitter.com/*", "https://twitter.com/*"],
+  "js": ["jquery-1.12.0.min.js","script.js", "MutationObserver.js", "templates.js"]
+  }
+]
+}
+
+//"run_at" defines when to load the javascript,
+//"matches" defines the URL(s) to match to inject the code, docs : https://developer.chrome.com/extensions/match_patterns.html
+//"js" specifies all the .js files to be injected,
+//"CSS" specifies all the CSS files to be injected.
+
+//web_accessible_resources specify the path and format of files which the web page require to load from extension.
+//because webpage and extensions are executed in isolated environments. They can't access each other's resources directly.
+//and in the following way we allow web pages to access the required files from an extension.
