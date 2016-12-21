@@ -1,9 +1,9 @@
 // TODO(DEVELOPER): Change the values below using values from the initialization snippet: Firebase Console > Overview > Add Firebase to your web app.
 // Initialize Firebase
 var config = {
-  apiKey: "<YOUR_API_KEY>",
-  databaseURL: "<YOUR_DATABASE_URL>",
-  storageBucket: "<YOUR_STORAGE_BUCKET_NAME>"
+    apiKey: "AIzaSyCuuaAWv4pHoOIo7NzGd7Ry95NXrsvySyY",
+    databaseURL: "https://whodis-6326a.firebaseio.com",
+    storageBucket: "whodis-6326a.appspot.com"
 };
 firebase.initializeApp(config);
 
