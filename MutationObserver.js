@@ -10,12 +10,12 @@ http://ryanmorr.com/using-mutation-observers-to-watch-for-element-availability/
 /*
 (function(win){
     'use strict';
-    
-    var listeners = [], 
-    doc = win.document, 
+
+    var listeners = [],
+    doc = win.document,
     MutationObserver = win.MutationObserver || win.WebKitMutationObserver,
     observer;
-    
+
     function ready(selector, fn){
         // Store the selector and callback to be monitored
         listeners.push({
@@ -34,7 +34,7 @@ http://ryanmorr.com/using-mutation-observers-to-watch-for-element-availability/
         // Check if the element is currently in the DOM
         check();
     }
-        
+
     function check(){
         // Check the DOM for elements matching a stored selector
         for(var i = 0, len = listeners.length, listener, elements; i < len; i++){
@@ -43,7 +43,7 @@ http://ryanmorr.com/using-mutation-observers-to-watch-for-element-availability/
             elements = doc.querySelectorAll(listener.selector);
             for(var j = 0, jLen = elements.length, element; j < jLen; j++){
                 element = elements[j];
-                // Make sure the callback isn't invoked with the 
+                // Make sure the callback isn't invoked with the
                 // same element more than once
                 if(!element.ready){
                     element.ready = true;
@@ -56,7 +56,7 @@ http://ryanmorr.com/using-mutation-observers-to-watch-for-element-availability/
 
     // Expose `ready`
     win.ready = ready;
-            
+
 })(this);
 */
 
@@ -66,7 +66,7 @@ Initializes a MutationObserver for the `#profile_popup` element.
 function InitializeMutationObserver()
 {
     //Mutation Observer
-    var target = $('#profile_popup')[0]; //A jQuery object is an array-like wrapper around one or more DOM elements. To get a reference to the actual DOM element (instead of the jQuery object), access the corresponding array element.
+    var target = $('#profile-hover-container')[0]; //A jQuery object is an array-like wrapper around one or more DOM elements. To get a reference to the actual DOM element (instead of the jQuery object), access the corresponding array element.
 
     var config = {
       attributes: true,
