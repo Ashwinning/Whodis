@@ -3,11 +3,7 @@
   "name": "Whodis",
   "description": "This sample shows how to authorize Firebase in a Chrome extension using a Google account.",
   "version": "2.1",
-  "icons": {
-    "128": "firebase.png"
-  },
   "browser_action": {
-    "default_icon": "firebase.png",
     "default_popup": "credentials.html"
   },
   "background": {
@@ -24,11 +20,5 @@
       "https://www.googleapis.com/auth/userinfo.profile"
     ]
   },
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgrSsB3m1FmXQEagGJaSR
-Heg6C4mioJfTJWcPrzUSj1kkefbjwW01l1uajG3xjJ4zUCLj8a9I0FsenHgKCwMf
-Dw7U1eoxxjx1ChjLS/PzZM/u//FUyYLodWZMp+7+Z1QCmSExhqAmlmXi3WbSWqj6
-UnrV7nIkHg+BH61J7+RmBY3sY6VOzsI1BEBIcGgHVCEFg5ic6nOhhdTi1uzrlnsF
-MMzRfP7cN+NkytMddEXR4gMzQYlfXo4Iggg9n+YSNcYYmjRJxwwl5pHacwMc+myW
-XFkZux3Hwur8WNx2ydyv6bewhoZ+bmEO+C+Xs4i0ug6zdv/Y85I2pRXrkBVFdclf
-KQIDAQAB"
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgrSsB3m1FmXQEagGJaSRHeg6C4mioJfTJWcPrzUSj1kkefbjwW01l1uajG3xjJ4zUCLj8a9I0FsenHgKCwMfDw7U1eoxxjx1ChjLS/PzZM/u//FUyYLodWZMp+7+Z1QCmSExhqAmlmXi3WbSWqj6UnrV7nIkHg+BH61J7+RmBY3sY6VOzsI1BEBIcGgHVCEFg5ic6nOhhdTi1uzrlnsFMMzRfP7cN+NkytMddEXR4gMzQYlfXo4Iggg9n+YSNcYYmjRJxwwl5pHacwMc+myWXFkZux3Hwur8WNx2ydyv6bewhoZ+bmEO+C+Xs4i0ug6zdv/Y85I2pRXrkBVFdclfKQIDAQAB"
 }
