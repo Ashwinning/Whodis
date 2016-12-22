@@ -60,10 +60,72 @@ http://ryanmorr.com/using-mutation-observers-to-watch-for-element-availability/
 })(this);
 */
 
+function InitializeMutationObservers()
+{
+    var target = document.body;
+    var config = {
+        attributes: false,
+        childList: true,
+        subtree: true
+    };
+    var observer = new MutationObserver(function(mutations)
+    {
+        mutations.forEach(function(mutation)
+        {
+            if (mutation.addedNodes && mutation.addedNodes.length > 0)
+            {
+            // element added to DOM
+                mutation.addedNodes.forEach(function(node)
+                {
+                    var listsInNode = $(node).find('li');
+                    //If there are 1 or more lists in this node (incl. parent)
+                    if (listsInNode.length != 0)
+                    {
+                        //If any of the lists contain the 'stream-item' class
+                        listsInNode.each(function(index, liElement)
+                        {
+                            if (liElement.classList.contains('stream-item'))
+                            {
+                                liElement.setAttribute("style", "background:blue");
+                            }
+                        });
+                    }
+                    //TODO embed the code bove into the else statement below
+                    /*
+                    if (node.classList.contains('stream-item'))
+                    {
+                        node.setAttribute("style", "background:blue");
+                    }
+                    else //check if one of the child classes contains 'stream-item'
+                    {
+                        if ($(node).find('li.stream-item').length != 0)
+                        {
+                            node.setAttribute("style", "background:blue");
+                        }
+                    }
+                    */
+                });
+
+            /*
+            var hasClass = [].some.call(mutation.addedNodes, function(el) {
+                return el.classList.contains('stream-item')
+            });
+            if (hasClass) {
+                // element has class `MyClass`
+                console.log('element ".stream-item" added');
+            }
+            */
+            }
+	    });
+    });
+    observer.observe(target, config);
+}
+
+
 /*
 Initializes a MutationObserver for the `#profile_popup` element.
 */
-function InitializeMutationObservers()
+function OldMutationObserver()
 {
     //Mutation Observer for profile-hover-containers
     var hoverContainerTarget = $('#profile-hover-container')[0]; //A jQuery object is an array-like wrapper around one or more DOM elements. To get a reference to the actual DOM element (instead of the jQuery object), access the corresponding array element.
