@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
-    InitializeMutationObserver();
-    
+    InitializeMutationObservers();
+
     //Get active user
 
 

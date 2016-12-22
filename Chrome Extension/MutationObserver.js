@@ -63,24 +63,44 @@ http://ryanmorr.com/using-mutation-observers-to-watch-for-element-availability/
 /*
 Initializes a MutationObserver for the `#profile_popup` element.
 */
-function InitializeMutationObserver()
+function InitializeMutationObservers()
 {
-    //Mutation Observer
-    var target = $('#profile-hover-container')[0]; //A jQuery object is an array-like wrapper around one or more DOM elements. To get a reference to the actual DOM element (instead of the jQuery object), access the corresponding array element.
+    //Mutation Observer for profile-hover-containers
+    var hoverContainerTarget = $('#profile-hover-container')[0]; //A jQuery object is an array-like wrapper around one or more DOM elements. To get a reference to the actual DOM element (instead of the jQuery object), access the corresponding array element.
 
-    var config = {
+    var hoverContainerConfig = {
       attributes: true,
       childList: false,
       subtree: false
     };
 
-    var observer = new MutationObserver(debounce(function()
+    var hoverContainerObserver = new MutationObserver(debounce(function()
     {
         console.log('debounced');
         InjectWhoDisDiv();
     }, 1000));
 
-    observer.observe(target, config);
+    hoverContainerObserver.observe(hoverContainerTarget, hoverContainerConfig);
+
+    //Mutation observer for individual tweets
+    var tweetListTarget = $('#stream-items-id')[0];
+
+    var tweetListConfig = {
+        attributes: false,
+        childList: true,
+        subtree: false
+    };
+
+    var tweetListObserver = new MutationObserver(function(mutations)
+    {
+        mutations.forEach(function(mutation)
+        {
+		    console.log(mutation);
+        });
+    });
+
+    tweetListObserver.observe(tweetListTarget, tweetListConfig);
+
 }
 
 // Returns a function, that, as long as it continues to be invoked, will not
