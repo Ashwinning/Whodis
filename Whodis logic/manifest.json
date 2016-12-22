@@ -3,7 +3,7 @@
 
 "name": "Whodis for twitter.",
 "description": "Allows you to add custom notes to twitter profiles.",
-"version": "1.0",
+"version": "0.1",
 
 "content_scripts":
 [
