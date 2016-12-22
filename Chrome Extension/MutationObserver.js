@@ -60,7 +60,10 @@ http://ryanmorr.com/using-mutation-observers-to-watch-for-element-availability/
 })(this);
 */
 
-function InitializeMutationObservers()
+/*
+    Initialized the Mutation Observer (listeners) to report changes to the DOM.
+*/
+function InitializeMutationObserver()
 {
     var target = document.body;
     var config = {
