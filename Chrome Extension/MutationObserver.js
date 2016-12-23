@@ -80,44 +80,28 @@ function InitializeMutationObserver()
             // element added to DOM
                 mutation.addedNodes.forEach(function(node)
                 {
-                    var listsInNode = $(node).find('li');
-                    //If there are 1 or more lists in this node (incl. parent)
-                    if (listsInNode.length != 0)
-                    {
-                        //If any of the lists contain the 'stream-item' class
-                        listsInNode.each(function(index, liElement)
-                        {
-                            if (liElement.classList.contains('stream-item'))
-                            {
-                                liElement.setAttribute("style", "background:blue");
-                            }
-                        });
-                    }
-                    //TODO embed the code bove into the else statement below
-                    /*
-                    if (node.classList.contains('stream-item'))
+                    if (typeof node != 'undefined' && node.classList.contains('stream-item'))
                     {
                         node.setAttribute("style", "background:blue");
                     }
                     else //check if one of the child classes contains 'stream-item'
                     {
-                        if ($(node).find('li.stream-item').length != 0)
+                        var listsInNode = $(node).find('li');
+                        //If there are 1 or more lists in this node (incl. parent)
+                        if (listsInNode.length != 0)
                         {
-                            node.setAttribute("style", "background:blue");
+                            //If any of the lists contain the 'stream-item' class
+                            listsInNode.each(function(index, liElement)
+                            {
+                                if (typeof liElement != 'undefined' && liElement.classList.contains('stream-item'))
+                                {
+                                    liElement.setAttribute("style", "background:blue");
+                                }
+                            });
                         }
                     }
-                    */
                 });
 
-            /*
-            var hasClass = [].some.call(mutation.addedNodes, function(el) {
-                return el.classList.contains('stream-item')
-            });
-            if (hasClass) {
-                // element has class `MyClass`
-                console.log('element ".stream-item" added');
-            }
-            */
             }
 	    });
     });

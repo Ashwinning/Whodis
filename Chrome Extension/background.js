@@ -31,3 +31,10 @@ function initApp() {
 window.onload = function() {
   initApp();
 };
+
+/*
+Trigger the OnURLChange function in our app's lifecycle
+*/
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    OnURLChange(tabId, changeInfo, tab);
+});
