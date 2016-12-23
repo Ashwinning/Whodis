@@ -27,7 +27,7 @@ function ProfileMutationReciever(mutations)
         //This is not the same card
         //Set this new card as the currentCard
         currentCard = {dataUserId: dataUserId, dataAssociatedTweetId: dataAssociatedTweetId};
-        console.log(currentCard);
+        //console.log(currentCard);
         //Send card data to App's lifecycle
         OnProfileChange(profileCardObject, dataUserId, dataAssociatedTweetId, mutations);
     }

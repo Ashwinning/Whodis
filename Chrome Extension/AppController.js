@@ -34,5 +34,6 @@ function OnURLChange(tabId, changeInfo, tab)
 */
 function OnProfileChange(profileCardObject, dataUserId, dataAssociatedTweetId, mutations)
 {
-    console.log("uid: " + dataUserId + "\n atid: " + dataAssociatedTweetId);
+    //console.log("uid: " + dataUserId + "\n atid: " + dataAssociatedTweetId);
+    
 }
