@@ -9,7 +9,7 @@ $(document).ready(function()
     //Initialize Mutation Observers
     InitializeMutationObserver();
     //Get all existing tweets loaded on the page
-    $('.stream-item').css('background','red');
+    //$('.stream-item').css('background','red');
 
     //Get active user
 

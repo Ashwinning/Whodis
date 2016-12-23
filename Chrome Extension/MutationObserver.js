@@ -82,7 +82,7 @@ function InitializeMutationObserver()
                 {
                     if (typeof node != 'undefined' && node.classList.contains('stream-item'))
                     {
-                        node.setAttribute("style", "background:blue");
+                        //node.setAttribute("style", "background:blue");
                     }
                     else //check if one of the child classes contains 'stream-item'
                     {
@@ -95,7 +95,7 @@ function InitializeMutationObserver()
                             {
                                 if (typeof liElement != 'undefined' && liElement.classList.contains('stream-item'))
                                 {
-                                    liElement.setAttribute("style", "background:blue");
+                                    //liElement.setAttribute("style", "background:blue");
                                 }
                             });
                         }
