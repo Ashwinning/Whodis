@@ -63,7 +63,26 @@ http://ryanmorr.com/using-mutation-observers-to-watch-for-element-availability/
 /*
     Initialized the Mutation Observer (listeners) to report changes to the DOM.
 */
-function InitializeMutationObserver()
+function InitializeMutationObservers()
+{
+    //TweetObserver();
+
+}
+
+/*
+    Observes changes to profile hover cards.
+    If a new profile hover card opens up, notifies
+    the app's lifecycle (AppController) about the change
+*/
+function ProfileHoverObserver()
+{
+    
+}
+
+/*
+    Observes all the tweets.
+*/
+function TweetObserver()
 {
     var target = document.body;
     var config = {
@@ -80,8 +99,15 @@ function InitializeMutationObserver()
             // element added to DOM
                 mutation.addedNodes.forEach(function(node)
                 {
-                    if (typeof node != 'undefined' && node.classList.contains('stream-item'))
+                    if (typeof node != 'undefined') //Avoid spamming console with errors
+                        return; //equivalent of moving to the next
+
+                    /*
+                        Universal check for all tweets begins here
+                    */
+                    if (node.classList.contains('stream-item'))
                     {
+                        //Top level node inserted is stream-item! No need to iterate more
                         //node.setAttribute("style", "background:blue");
                     }
                     else //check if one of the child classes contains 'stream-item'
@@ -103,7 +129,7 @@ function InitializeMutationObserver()
                 });
 
             }
-	    });
+        });
     });
     observer.observe(target, config);
 }
@@ -112,6 +138,7 @@ function InitializeMutationObserver()
 /*
 Initializes a MutationObserver for the `#profile_popup` element.
 */
+/*
 function OldMutationObserver()
 {
     //Mutation Observer for profile-hover-containers
@@ -151,6 +178,7 @@ function OldMutationObserver()
     tweetListObserver.observe(tweetListTarget, tweetListConfig);
 
 }
+*/
 
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for

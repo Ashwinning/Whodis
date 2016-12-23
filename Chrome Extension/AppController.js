@@ -7,7 +7,7 @@
 $(document).ready(function()
 {
     //Initialize Mutation Observers
-    InitializeMutationObserver();
+    InitializeMutationObservers();
     //Get all existing tweets loaded on the page
     //$('.stream-item').css('background','red');
 
@@ -22,4 +22,10 @@ $(document).ready(function()
 function OnURLChange(tabId, changeInfo, tab)
 {
     //console.log(tab.url)
+}
+
+
+function OnProfileChange()
+{
+    
 }
