@@ -66,17 +66,29 @@ http://ryanmorr.com/using-mutation-observers-to-watch-for-element-availability/
 function InitializeMutationObservers()
 {
     //TweetObserver();
-
+    ProfileHoverObserver();
 }
 
 /*
     Observes changes to profile hover cards.
     If a new profile hover card opens up, notifies
-    the app's lifecycle (AppController) about the change
+    the app's lifecycle (AppController) about the change.
 */
 function ProfileHoverObserver()
 {
-    
+    var target = $('#profile-hover-container')[0];  //A jQuery object is an array-like wrapper around one or more DOM elements.
+                                                    //To get a reference to the actual DOM element (instead of the jQuery object),
+                                                    //access the corresponding array element.
+    var config = {
+        attributes: true,
+        childlist: false,
+        subtree: false
+    };
+    var observer = new MutationObserver(function(mutations)
+    {
+        ProfileMutationReciever(mutations);
+    });
+    observer.observe(target, config);
 }
 
 /*

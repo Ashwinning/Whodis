@@ -24,8 +24,15 @@ function OnURLChange(tabId, changeInfo, tab)
     //console.log(tab.url)
 }
 
-
-function OnProfileChange()
+/*
+    Triggered every time a change is registered in the active profile hover card.
+    Parameters:
+    The `profileCardObject` is a jQuery object containing the relevant div.
+    'dataUserId' is the twitter numeric user id of the user.
+    'dataAssociatedTweetId' is the tweet id.
+    The Mutations parameter contains a `MutationRecord`.
+*/
+function OnProfileChange(profileCardObject, dataUserId, dataAssociatedTweetId, mutations)
 {
-    
+    console.log("uid: " + dataUserId + "\n atid: " + dataAssociatedTweetId);
 }
