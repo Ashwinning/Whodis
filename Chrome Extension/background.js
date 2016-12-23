@@ -32,9 +32,18 @@ window.onload = function() {
   initApp();
 };
 
-/*
-Trigger the OnURLChange function in our app's lifecycle
-*/
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    OnURLChange(tabId, changeInfo, tab);
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
+{
+    //console.log("Sending message"); //Doesn't show
+    SendMessageToActiveTab({function: "OnURLChange", args: {ti: tabId, ci: changeInfo, t: tab}});
 });
+
+
+function SendMessageToActiveTab(object)
+{
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, object, function(response) {
+        //console.log(response.farewell);
+      });
+    });
+}

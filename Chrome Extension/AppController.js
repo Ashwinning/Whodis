@@ -21,5 +21,5 @@ $(document).ready(function()
 */
 function OnURLChange(tabId, changeInfo, tab)
 {
-    $('.stream-item').css('background','red');
+    //console.log(tab.url)
 }
