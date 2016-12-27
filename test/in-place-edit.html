@@ -1,8 +1,53 @@
 <html>
     <head>
         <script type="text/javascript" src="../Chrome Extension/jquery-1.12.0.min.js"></script>
+        <script>
+            $.fn.inlineEdit = function(replaceWith, connectWith)
+            {
+                $(this).hover(function()
+                {
+                    $(this).addClass('hover');
+                }, function()
+                {
+                    $(this).removeClass('hover');
+                });
+
+                $(this).click(function()
+                {
+
+                    var elem = $(this);
+
+                    elem.hide();
+                    elem.after(replaceWith);
+                    replaceWith.focus();
+
+                    replaceWith.blur(function() {
+
+                        if ($(this).val() != "")
+                        {
+                            connectWith.val($(this).val()).change();
+                            elem.text($(this).val());
+                        }
+
+                        $(this).remove();
+                        elem.show();
+                    });
+                });
+            };
+        </script>
     </head>
     <body>
+        <form>
+            <input type="hidden" name="hiddenField" />
+        </form>
 
+        <pre><p>Add Note!</p></pre>
+
+        <script type="text/javascript">
+        var replaceWith = $('<textarea rows="4" cols="50"></textarea>'),
+            connectWith = $('input[name="hiddenField"]');
+
+        $('p').inlineEdit(replaceWith, connectWith);
+        </script>
     </body>
 </html>
