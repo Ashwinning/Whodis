@@ -42,13 +42,11 @@
         <form>
             <input type="hidden" name="hiddenField" />
         </form>
-
         <pre><p class="whodis-note">Add Note!</p></pre>
 
         <script type="text/javascript">
         var replaceWith = $('<textarea class="whodis-textarea" style="max-height: 300px"></textarea>'),
             connectWith = $('input[name="hiddenField"]');
-
         $('.whodis-note').inlineEdit(replaceWith, connectWith);
         </script>
     </body>

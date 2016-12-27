@@ -35,6 +35,7 @@ function OnURLChange(tabId, changeInfo, tab)
 function OnProfileChange(profileCardObject, dataUserId, dataAssociatedTweetId, mutations)
 {
     //console.log("uid: " + dataUserId + "\n atid: " + dataAssociatedTweetId);
-    profileCardObject.find('.profile-card').append(temporaryInjection);
+    profileCardObject.find('.profile-card').append(addNoteForm);
+    MakeInlineEditable();
     console.log('profile');
 }
