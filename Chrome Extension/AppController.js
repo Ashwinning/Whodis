@@ -32,10 +32,10 @@ function OnURLChange(tabId, changeInfo, tab)
     'dataAssociatedTweetId' is the tweet id.
     The Mutations parameter contains a `MutationRecord`.
 */
-function OnProfileChange(profileCardObject, dataUserId, dataAssociatedTweetId, mutations)
+function OnProfileShown(profileCardObject, dataUserId, dataAssociatedTweetId, mutations)
 {
     //console.log("uid: " + dataUserId + "\n atid: " + dataAssociatedTweetId);
     profileCardObject.find('.profile-card').append(addNoteForm);
     MakeInlineEditable();
-    console.log('profile');
+    console.log('ProfileShown');
 }

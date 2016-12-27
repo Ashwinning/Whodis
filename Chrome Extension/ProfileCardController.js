@@ -11,7 +11,10 @@ var currentCard = {dataUserId: "", dataAssociatedTweetId: ""};
 var profileCardObject = $('#profile-hover-container');
 
 // Current state of the card
-var cardIsVisible = false;
+var cardIsVisible;
+
+// Track the state of the card
+var cardWasVisible;
 
 /*
     Recieves mutations from MutationObserver,
@@ -28,8 +31,34 @@ function ProfileMutationReciever(mutations)
     var cardStyle = profileCardObject.attr('style');
     var cardDisplay = ReadDisplay(cardStyle);
 
-    alert(cardDisplay);
-    //if (cardDisplay = "Block")
+    /*
+        Set cardIsVisible state.
+    */
+    if (cardDisplay == "block")
+    {
+        cardIsVisible = true;
+        console.log('isVisible');
+    }
+    else if (cardDisplay == "none")
+    {
+        cardIsVisible = false;
+        cardWasVisible = false; //Set the state so we know the card had been made invisible.
+        console.log('isNotVisible');
+    }
+
+    /*
+
+    */
+    if (cardIsVisible && !cardWasVisible) //Card is now visible but wasn't before
+    {
+        //Set the tracker so we know the card was visible this time around.
+        cardWasVisible = true;
+        //Set this new card as the currentCard
+        currentCard = {dataUserId: dataUserId, dataAssociatedTweetId: dataAssociatedTweetId};
+        //Send card data to App's lifecycle
+        OnProfileShown(profileCardObject, dataUserId, dataAssociatedTweetId, mutations);
+    }
+
 }
 
 /*
@@ -59,6 +88,6 @@ function ReadDisplay(css)
         currentCard = {dataUserId: dataUserId, dataAssociatedTweetId: dataAssociatedTweetId};
         //console.log(currentCard);
         //Send card data to App's lifecycle
-        OnProfileChange(profileCardObject, dataUserId, dataAssociatedTweetId, mutations);
+        OnProfileShown(profileCardObject, dataUserId, dataAssociatedTweetId, mutations);
     }
 */
