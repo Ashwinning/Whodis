@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script type="text/javascript" src="../Chrome Extension/jquery-1.12.0.min.js"></script>
+        <link href="../Chrome Extension/bootstrap3/css/bootstrap.min.css" />
+        <script type="text/javascript" src="../Chrome Extension/bootstrap3/js/bootstrap.min.js"></script>
+
+        <link href="../Chrome Extension/bootstrap3-editable/css/bootstrap-editable.css" />
+        <script src="../Chrome Extension/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+        <script>
+            $('#username').editable({
+            type: 'text',
+            pk: 1,
+            url: '/post',
+            title: 'Enter username'
+            }); 
+        </script>
+    </head>
+    <body>
+        <a href="#" id="username" data-type="text" data-pk="1" data-url="/post" data-title="Enter username">superuser</a>
+
+    </body>
+</html>
