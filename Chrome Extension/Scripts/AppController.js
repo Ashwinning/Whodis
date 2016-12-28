@@ -7,13 +7,6 @@
     Public/Global variables
 */
 
-//reference to Background
-var background = chrome.extension.getBackgroundPage();
-//reference to firebase
-var firebase;
-//reference to the currentlyLoggedInUser
-var currentlyLoggedInUser;
-
 //On Start/Page Load
 $(document).ready(function()
 {
@@ -23,7 +16,7 @@ $(document).ready(function()
     //$('.stream-item').css('background','red');
 
     //Get active user
-
+    console.log('Started plugin');
 });
 
 /*
@@ -32,8 +25,7 @@ $(document).ready(function()
 */
 function OnFirebaseInit()
 {
-    firebase = background.fBaseRef;
-    currentlyLoggedInUser = firebase.auth().currentUser;
+
 }
 
 /*

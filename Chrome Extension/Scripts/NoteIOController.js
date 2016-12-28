@@ -1,10 +1,11 @@
 /*
     Everything database IO related for notes.
+    Since this interacts with background.js (for firebase's functions)
+    It has to interact with the MessageBackgroundController.
 */
 
 // Get a reference to the current logged in user.
-var userId = currentlyLoggedInUser.uid;
-
+var userId;
 /*
     dataUserId is the Twitter UID.
 */
@@ -22,5 +23,5 @@ function GetNote(dataUserId)
 */
 function SetNote(dataUserId, note)
 {
-    background.firebase.database().ref('/users/' + userId + '/notes/' + dataUserId).set(note);
+    firebase.database().ref('/users/' + userId + '/notes/' + dataUserId).set(note);
 }
