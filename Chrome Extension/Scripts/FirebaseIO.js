@@ -5,7 +5,32 @@
 */
 
 /*
+    HOW TO PASS MESSAGES
 
+    To run IO ops from the `content scripts`, you need to a pass a message
+    Messages are passed between the sandboxed `background` and `content scripts` like so:
+
+        chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+            console.log(response);
+        });
+
+    REQUEST FORMAT
+
+    The JSON payload sent in the message should be of the following formats:
+
+        TO PERFORM A SET OPERATION:
+
+            {
+                operation: "SET",
+                path: "/the/path/where/you/want/to/put/this/stuff",
+                value: {theJSONpayload: "Or string which you'd like to set here"}
+            }
+
+        TO PERFORM A ONCE OPERATION: (To get stuff)
+            {
+                operation: "ONCE",
+                path: "/the/path/where/you/want/to/put/this/stuff"
+            }
 */
 
 
@@ -35,11 +60,10 @@ function DatabaseSet(path, value)
     Can only get data for the current user (under `'/users/' + userId`).
     Accepts a `path`, and a value which will be retrieved from there.
 */
-function DatabaseOnce()
+function DatabaseOnce(path)
 {
     return firebase.database().ref('/users/' + userId + path).once('value').then(function(snapshot)
     {
-        var username = snapshot.val().username;
-        // ...
+        return snapshot.val();
     });
 }
