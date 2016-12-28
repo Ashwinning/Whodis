@@ -7,6 +7,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//var fBaseRef = firebase;
+
 /**
  * initApp handles setting up the Firebase context and registering
  * callbacks for the auth status.
@@ -27,7 +29,7 @@ function initApp() {
     console.log('User state change detected from the Background script of the Chrome Extension:', user);
   });
   //Set firebase refs in AppController
-  
+  OnFirebaseInit();
 }
 
 window.onload = function() {

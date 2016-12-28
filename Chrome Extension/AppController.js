@@ -6,6 +6,9 @@
 /*
     Public/Global variables
 */
+
+//reference to Background
+var background = chrome.extension.getBackgroundPage();
 //reference to firebase
 var firebase;
 //reference to the currentlyLoggedInUser
@@ -23,9 +26,14 @@ $(document).ready(function()
 
 });
 
+/*
+    Called when firebase is initialized.
+    Sets all the references from the
+*/
 function OnFirebaseInit()
 {
-    
+    firebase = background.fBaseRef;
+    currentlyLoggedInUser = firebase.auth().currentUser;
 }
 
 /*

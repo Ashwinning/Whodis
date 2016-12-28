@@ -22,5 +22,5 @@ function GetNote(dataUserId)
 */
 function SetNote(dataUserId, note)
 {
-    firebase.database().ref('/users/' + userId + '/notes/' + dataUserId).set(note);
+    background.firebase.database().ref('/users/' + userId + '/notes/' + dataUserId).set(note);
 }
