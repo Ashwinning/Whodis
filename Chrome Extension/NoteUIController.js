@@ -1,0 +1,3 @@
+/*
+    Everything note UI related.
+*/
