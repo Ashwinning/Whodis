@@ -26,6 +26,8 @@ function initApp() {
   firebase.auth().onAuthStateChanged(function(user) {
     console.log('User state change detected from the Background script of the Chrome Extension:', user);
   });
+  //Set firebase refs in AppController
+  
 }
 
 window.onload = function() {

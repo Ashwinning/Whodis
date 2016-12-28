@@ -3,6 +3,14 @@
     The App's lifecycle is controlled through this document.
 */
 
+/*
+    Public/Global variables
+*/
+//reference to firebase
+var firebase;
+//reference to the currentlyLoggedInUser
+var currentlyLoggedInUser;
+
 //On Start/Page Load
 $(document).ready(function()
 {
@@ -14,6 +22,11 @@ $(document).ready(function()
     //Get active user
 
 });
+
+function OnFirebaseInit()
+{
+    
+}
 
 /*
     Triggered every time a change is registered in the active tab's URL.
