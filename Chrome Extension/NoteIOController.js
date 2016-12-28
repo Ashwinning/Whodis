@@ -9,11 +9,11 @@ var database = firebase.database();
 var userId = firebase.auth().currentUser.uid;
 
 /*
-
+    dataUserId is the Twitter UID.
 */
-function GetNote(twitterID)
+function GetNote(dataUserId)
 {
-    return database.ref('/users/' + userId + '/notes/' + twitterID).once('value').then(function(snapshot)
+    return database.ref('/users/' + userId + '/notes/' + dataUserId).once('value').then(function(snapshot)
     {
         var note = snapshot.val();
         console.log(note);
@@ -21,9 +21,9 @@ function GetNote(twitterID)
 }
 
 /*
-
+    dataUserId is the Twitter UID.
 */
-function SetNote(twitterID, note)
+function SetNote(dataUserId, note)
 {
-    database.ref('/users/' + userId + '/notes/' + twitterID).set(note);
+    database.ref('/users/' + userId + '/notes/' + dataUserId).set(note);
 }

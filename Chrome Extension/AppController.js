@@ -36,6 +36,6 @@ function OnProfileShown(profileCardObject, dataUserId, dataAssociatedTweetId, mu
 {
     //console.log("uid: " + dataUserId + "\n atid: " + dataAssociatedTweetId);
     profileCardObject.find('.profile-card').append(addNoteForm);
-    MakeInlineEditable();
+    MakeInlineEditable(dataUserId);
     console.log('ProfileShown');
 }

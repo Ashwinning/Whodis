@@ -10,16 +10,18 @@ var replaceWith = $('<textarea class="whodis-textarea" style="max-height: 300px"
 
 /*
     To be run after every time a note/form is injected
+    Accepts a twitterID/dataUserId which uniquely identifies the user this note is being set for.
+    When changes are made, they're automatically saved.
 */
-function MakeInlineEditable()
+function MakeInlineEditable(twitterID)
 {
-    $('.whodis-note').inlineEdit(replaceWith, connectWith);
+    $('.whodis-note').inlineEdit(replaceWith, connectWith, twitterID);
 }
 
 /*
     The Inline Edit class from http://www.egstudio.biz/tiny-inline-edit-plugin-for-jquery/
 */
-$.fn.inlineEdit = function(replaceWith, connectWith)
+$.fn.inlineEdit = function(replaceWith, connectWith, twitterID)
 {
     $(this).hover(function()
     {
@@ -49,6 +51,9 @@ $.fn.inlineEdit = function(replaceWith, connectWith)
             $(this).remove();
             elem.show();
             //alert(elem.text()); //Call function here
+            //Set note in database
+            SetNote(twitterID, elem.text());
+            console.log("Note for " + twitterID + " was set to " + elem.text());
         });
     });
 };
