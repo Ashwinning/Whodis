@@ -25,8 +25,6 @@ $(document).ready(function()
 });
 
 
-
-
 /*
     Called when firebase is initialized.
     Sets all the references from the
