@@ -6,8 +6,9 @@
 
 /*
     dataUserId is the Twitter UID.
+    Use this as a callback function
 */
-function GetNote(dataUserId)
+function GetNote(dataUserId, callback)
 {
     console.log('GETNOTE : Getting note');
     //Define the operation
@@ -18,9 +19,8 @@ function GetNote(dataUserId)
     //Execute the operation
     chrome.runtime.sendMessage(operation, function(response)
     {
-        console.log('GetNote recieved a response:');
-        console.log(response.value);
-        return response.value;
+        console.log('GetNote recieved a response: ' + response.value);
+        callback(response.value);
     });
 }
 

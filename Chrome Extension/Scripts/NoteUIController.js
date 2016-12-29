@@ -6,20 +6,24 @@
 /*
     Returns the HTML to be injected
 */
-function GetInjection(twitterID)
+function GetInjection(twitterID, callback)
 {
     console.log('Getting injection FOR : ' + twitterID);
-    var note = GetNote(twitterID);
-    var textValue;
-    if (note === undefined)
+    GetNote(twitterID, function(response)
     {
-        textValue = "Add a note!";
-    }
-    else
-    {
-        textValue = note;
-    }
-    console.log ('Injecting note \ntextValue = ' + textValue);
-    var noteTextAreaTemplate = '<form><input type="hidden" name="hiddenField" /></form><pre><p class="whodis-note">' + textValue + '</p></pre>';
-    return noteTextAreaTemplate;
+        console.log('NoteUI GetNote response : ' + response);
+        var textValue;
+        if (response === undefined)
+        {
+            textValue = "Add a note!";
+        }
+        else
+        {
+            textValue = response;
+        }
+        console.log ('Injecting note \ntextValue = ' + textValue);
+        var noteTextAreaTemplate = '<form><input type="hidden" name="hiddenField" /></form><pre><p class="whodis-note">' + textValue + '</p></pre>';
+        callback(noteTextAreaTemplate);
+    });
+
 }

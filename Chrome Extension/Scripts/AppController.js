@@ -48,7 +48,10 @@ function OnURLChange(tabId, changeInfo, tab)
 function OnProfileShown(profileCardObject, dataUserId, dataAssociatedTweetId, mutations)
 {
     //console.log("Profile Shown! \n uid: " + dataUserId + "\n atid: " + dataAssociatedTweetId);
-    profileCardObject.find('.profile-card').append(GetInjection(dataUserId));
-    MakeInlineEditable(dataUserId);
-    //console.log('ProfileShown');
+    //Use the GetInjection callback
+    GetInjection(dataUserId, function(response)
+    {
+        profileCardObject.find('.profile-card').append(response);
+        MakeInlineEditable(dataUserId);
+    });
 }
