@@ -31,6 +31,13 @@
                 operation: "ONCE",
                 path: "/the/path/where/you/want/to/put/this/stuff"
             }
+
+        TO GET THE AUTHENTICATED USER'S TOKEN
+            {
+                operation: "TOKEN"
+            }
+
+
 */
 
 // Reference to the current user's User ID
@@ -53,6 +60,11 @@ function(request, sender, sendResponse)
     {
         DatabaseOnce(request.path, sendResponse);
         return true; //Indicates that we'll call sendResponse() asynchronously.
+    }
+
+    if (request.operation.toUpperCase() == "TOKEN")
+    {
+        GetToken(sendResponse);
     }
 });
 
@@ -80,5 +92,16 @@ function DatabaseOnce(path, sendResponse)
     {
         console.log('DatabaseOnce recieved response : ' + snapshot.val());
         sendResponse({value: snapshot.val()}); //TODO : pass val instead of json.
+    });
+}
+
+/*
+    Returns the user's (firebase)UID and Token.
+*/
+function GetToken(sendResponse)
+{
+    firebase.auth().currentUser.getToken().then(function(data)
+    {
+        sendResponse({uid: userId, token: data});
     });
 }

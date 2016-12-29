@@ -48,3 +48,43 @@ function SetNote(dataUserId, note)
         return response;
     });
 }
+
+
+/*
+    Gets the twitterID's for every note this user has saved.
+    User a REST request since "Shallow" is not supported by any of the Firebase SDKs.
+    Accepts a callback to which the information is passed
+*/
+function GetNoteList(callback)
+{
+    //Get logged in user's current token
+    console.log('Getting current user\'s token.');
+    //Define the operation
+    var operation = {
+        operation: "TOKEN"
+    }
+    //Execute the operation
+    chrome.runtime.sendMessage(operation, function(response)
+    {
+        //Once we got the token
+        console.log('NoteIO got token response:');
+        console.log(response);
+        var userId = response.uid;
+        var token = response.token;
+        var url = 'https://whodis-6326a.firebaseio.com/users/'+userId+'/notes.json?shallow=true&auth='+token;
+        $.get( url, function( data )
+        {
+            //store all keys from this JSON data in an array
+            var keys = [];
+            for(var k in obj) //sorry future Ashwin for iterating, but this isn't C++ and I'm not getting into the map polyfill mess right now. That's a job for future Ashwin.
+            {
+                keys.push(k);
+            }
+            //Send them back to Mexico (Oh god that's dark).
+            callback(keys);
+        });
+
+        //callback(response);
+    });
+
+}

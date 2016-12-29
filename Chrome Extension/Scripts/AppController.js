@@ -15,9 +15,17 @@ $(document).ready(function()
     //Get all existing tweets loaded on the page
     //$('.stream-item').css('background','red');
 
-    //Get active user
     console.log('Started plugin');
+
+    GetNoteList(function(keys)
+    {
+        console.log(keys);
+    });
+
 });
+
+
+
 
 /*
     Called when firebase is initialized.
