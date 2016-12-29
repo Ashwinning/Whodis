@@ -40,8 +40,15 @@
 chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse)
 {
-  if (request.greeting == "hello")
-  sendResponse({farewell: "goodbye"});
+    if (request.operation.toUpperCase() == "SET")
+    {
+        DatabaseSet(request.path, request.value);
+    }
+
+    if (request.operation.toUpperCase() == "ONCE")
+    {
+        sendResponse(DatabaseOnce(request.path));
+    }
 });
 
 /*

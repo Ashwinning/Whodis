@@ -11,10 +11,15 @@ var userId;
 */
 function GetNote(dataUserId)
 {
-    return firebase.database().ref('/users/' + userId + '/notes/' + dataUserId).once('value').then(function(snapshot)
+    //Define the operation
+    var operation = {
+        operation: "ONCE",
+        path: "/notes/" + dataUserId
+    }
+    //Execute the operation
+    return chrome.runtime.sendMessage(operation, function(response)
     {
-        var note = snapshot.val();
-        console.log(note);
+        return response;
     });
 }
 
@@ -24,4 +29,15 @@ function GetNote(dataUserId)
 function SetNote(dataUserId, note)
 {
     firebase.database().ref('/users/' + userId + '/notes/' + dataUserId).set(note);
+    //Define the operation
+    var operation = {
+        operation: "SET",
+        path: "/notes/" + dataUserId,
+        value: note
+    }
+    //Execute the operation
+    return chrome.runtime.sendMessage(operation, function(response)
+    {
+        return response;
+    });
 }
