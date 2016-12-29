@@ -29,6 +29,12 @@ function GetNote(dataUserId, callback)
 */
 function SetNote(dataUserId, note)
 {
+    if (note == emptyNotePrompt)
+    {
+        //Don't do anything.
+        return;
+    }
+
     console.log('SetNote \nSetting note : ' + note + '\nfor : ' + dataUserId);
     //Define the operation
     var operation = {

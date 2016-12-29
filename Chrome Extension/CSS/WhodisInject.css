@@ -1,0 +1,45 @@
+.whodis-note
+{
+    word-wrap: break-word;
+}
+
+
+.whodis-holder {
+    margin: 5px 5px 5px 0px;
+    padding-left: 10px;
+}
+
+.note-wrapper
+{
+    border-radius: 5px;
+    border: 1px;
+    border-color: #1da1f2;
+    border-style: solid;
+    padding: 10px;
+    margin-right: 10px;
+    height: auto;
+}
+
+.whodis-textarea
+{
+    border: none;
+    /* overflow: auto; */
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    width: 96%;
+    resize: none;
+}
+
+.whodis-textarea:focus
+{
+    outline: none;
+    outline-width: 0;
+}
+
+.whodis-textarea input
+{
+    outline-style: none;
+}

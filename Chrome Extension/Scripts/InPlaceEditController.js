@@ -5,7 +5,7 @@
 /*
     HTML to replace the in place edit text with
 */
-var replaceWith = $('<textarea class="whodis-textarea" style="max-height: 300px"></textarea>'),
+var replaceWith = $('<textarea class="whodis-textarea" style="max-height: 300px; box-shadow:none;"></textarea>'),
     connectWith = $('input[name="hiddenField"]');
 
 /*
@@ -37,22 +37,27 @@ $.fn.inlineEdit = function(replaceWith, connectWith, twitterID)
 
         elem.hide();
         elem.after(replaceWith);
+        if (elem.text() != emptyNotePrompt)
+        {
+            $('.whodis-textarea').val(elem.text());
+        }
         replaceWith.focus();
-        autosize(document.querySelectorAll('textarea'));
+        autosize(document.querySelectorAll('.whodis-textarea')); //Make textarea autosizable
         replaceWith.blur(function()
         {
             if ($(this).val() != "")
             {
-                connectWith.val($(this).val()).change();
+                //connectWith.val($(this).val()).change();
                 elem.text($(this).val());
             }
-
+            $('.whodis-textarea').val(''); //Clear textarea
             $(this).remove();
             elem.show();
             //alert(elem.text()); //Call function here
             //Set note in database
             SetNote(twitterID, elem.text());
             //console.log("Note for " + twitterID + " was set to " + elem.text());
+
         });
     });
 };

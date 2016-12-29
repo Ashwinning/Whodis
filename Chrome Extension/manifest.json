@@ -10,9 +10,13 @@
     "matches": ["http://*.twitter.com/*", "http://twitter.com/*", "https://*.twitter.com/*", "https://twitter.com/*"],
     "js": ["jquery-1.12.0.min.js","script.js", "/Scripts/MutationObserver.js", "templates.js",
         "/Scripts/AppController.js", "/Scripts/URLController.js", "/Scripts/ProfileCardController.js", "autosize.min.js",
-        "/Scripts/InPlaceEditController.js", "/Scripts/NoteUIController.js", "/Scripts/NoteIOController.js"]
+        "/Scripts/InPlaceEditController.js", "/Scripts/NoteUIController.js", "/Scripts/NoteIOController.js"],
+    "css": ["/CSS/WhodisInject.css"]
     }
- ],
+  ],
+  "web_accessible_resources" :[
+    "Images/*.png"
+    ],
   "browser_action": {
     "default_popup": "credentials.html"
   },
