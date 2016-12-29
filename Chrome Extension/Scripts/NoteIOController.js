@@ -76,7 +76,7 @@ function GetNoteList(callback)
         {
             //store all keys from this JSON data in an array
             var keys = [];
-            for(var k in obj) //sorry future Ashwin for iterating, but this isn't C++ and I'm not getting into the map polyfill mess right now. That's a job for future Ashwin.
+            for(var k in data) //sorry future Ashwin for iterating, but this isn't C++ and I'm not getting into the map polyfill mess right now. That's a job for future Ashwin.
             {
                 keys.push(k);
             }

@@ -65,6 +65,7 @@ function(request, sender, sendResponse)
     if (request.operation.toUpperCase() == "TOKEN")
     {
         GetToken(sendResponse);
+        return true; //Indicates that we'll call sendResponse() asynchronously.
     }
 });
 
@@ -102,6 +103,7 @@ function GetToken(sendResponse)
 {
     firebase.auth().currentUser.getToken().then(function(data)
     {
+        console.log('FirebaseIO got data \nUID: ' + userId + '\nToken: ' + data );
         sendResponse({uid: userId, token: data});
     });
 }
