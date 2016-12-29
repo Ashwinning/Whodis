@@ -16,11 +16,11 @@ function GetNote(dataUserId)
         path: "/notes/" + dataUserId
     }
     //Execute the operation
-    return chrome.runtime.sendMessage(operation, function(response)
+    chrome.runtime.sendMessage(operation, function(response)
     {
         console.log('GetNote recieved a response:');
-        console.log(response);
-        return response;
+        console.log(response.value);
+        return response.value;
     });
 }
 

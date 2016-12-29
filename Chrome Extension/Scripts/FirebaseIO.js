@@ -34,6 +34,7 @@
 */
 
 // Reference to the current user's User ID
+// Set in background.js
 var userId;
 
 /*
@@ -51,6 +52,7 @@ function(request, sender, sendResponse)
     if (request.operation.toUpperCase() == "ONCE")
     {
         DatabaseOnce(request.path, sendResponse);
+        return true; //Indicates that we'll call sendResponse() asynchronously.
     }
 });
 
@@ -74,9 +76,9 @@ function DatabaseSet(path, value)
 function DatabaseOnce(path, sendResponse)
 {
     console.log('DatabaseOnce \nGetting note at : ' + '/users/' + userId + path);
-    return firebase.database().ref('/users/' + userId + path).once('value').then(function(snapshot)
+    firebase.database().ref('/users/' + userId + path).once('value').then(function(snapshot)
     {
-        console.log('DatabaseOnce value recieved : ' + snapshot.val());
-        sendResponse(snapshot.val());
+        console.log('DatabaseOnce recieved response : ' + snapshot.val());
+        sendResponse({value: snapshot.val()});
     });
 }
