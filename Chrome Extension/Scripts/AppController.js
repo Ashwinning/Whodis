@@ -48,9 +48,16 @@ function OnURLChange(tabId, changeInfo, tab)
 function OnProfileShown(profileCardObject, dataUserId, dataAssociatedTweetId, mutations)
 {
     //console.log("Profile Shown! \n uid: " + dataUserId + "\n atid: " + dataAssociatedTweetId);
+    //Inject The Loading Indicator
+    var loader = '<div id="whodis-loading-spinner"><center><img src="https://abs.twimg.com/a/1482872295/img/t1/spinner-rosetta-blue-26x26.gif"></center></div>';
+    var loaderObject = profileCardObject.find('.profile-card').append(loader);
+    console.log(loaderObject);
     //Use the GetInjection callback
     GetInjection(dataUserId, function(response)
     {
+        //Remove spinner
+        $('#whodis-loading-spinner').remove();
+        //Add the WhoDis HTML
         profileCardObject.find('.profile-card').append(response);
         MakeInlineEditable(dataUserId);
     });
