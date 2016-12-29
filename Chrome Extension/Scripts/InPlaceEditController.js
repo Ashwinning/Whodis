@@ -33,7 +33,6 @@ $.fn.inlineEdit = function(replaceWith, connectWith, twitterID)
 
     $(this).click(function()
     {
-
         var elem = $(this);
 
         elem.hide();
@@ -53,7 +52,7 @@ $.fn.inlineEdit = function(replaceWith, connectWith, twitterID)
             //alert(elem.text()); //Call function here
             //Set note in database
             SetNote(twitterID, elem.text());
-            console.log("Note for " + twitterID + " was set to " + elem.text());
+            //console.log("Note for " + twitterID + " was set to " + elem.text());
         });
     });
 };

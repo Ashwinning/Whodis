@@ -33,9 +33,12 @@
             }
 */
 
+// Reference to the current user's User ID
+var userId;
 
 /*
     Listens to the incoming messages and processes the requests.
+    Set all the hooks for operations here.
 */
 chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse)
@@ -47,7 +50,7 @@ function(request, sender, sendResponse)
 
     if (request.operation.toUpperCase() == "ONCE")
     {
-        sendResponse(DatabaseOnce(request.path));
+        DatabaseOnce(request.path, sendResponse);
     }
 });
 
@@ -58,6 +61,7 @@ function(request, sender, sendResponse)
 */
 function DatabaseSet(path, value)
 {
+    console.log('DatabaseSet \nSetting note : ' + value + '\nat : ' + '/users/' + userId + path);
     firebase.database().ref('/users/' + userId + path).set(value);
 }
 
@@ -67,10 +71,12 @@ function DatabaseSet(path, value)
     Can only get data for the current user (under `'/users/' + userId`).
     Accepts a `path`, and a value which will be retrieved from there.
 */
-function DatabaseOnce(path)
+function DatabaseOnce(path, sendResponse)
 {
+    console.log('DatabaseOnce \nGetting note at : ' + '/users/' + userId + path);
     return firebase.database().ref('/users/' + userId + path).once('value').then(function(snapshot)
     {
-        return snapshot.val();
+        console.log('DatabaseOnce value recieved : ' + snapshot.val());
+        sendResponse(snapshot.val());
     });
 }

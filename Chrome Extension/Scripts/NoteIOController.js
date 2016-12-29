@@ -1,16 +1,15 @@
 /*
     Everything database IO related for notes.
     Since this interacts with background.js (for firebase's functions)
-    It has to interact with the MessageBackgroundController.
+    It has to interact with FirebaseIO.js.
 */
 
-// Get a reference to the current logged in user.
-var userId;
 /*
     dataUserId is the Twitter UID.
 */
 function GetNote(dataUserId)
 {
+    console.log('GETNOTE : Getting note');
     //Define the operation
     var operation = {
         operation: "ONCE",
@@ -19,6 +18,8 @@ function GetNote(dataUserId)
     //Execute the operation
     return chrome.runtime.sendMessage(operation, function(response)
     {
+        console.log('GetNote recieved a response:');
+        console.log(response);
         return response;
     });
 }
@@ -28,7 +29,7 @@ function GetNote(dataUserId)
 */
 function SetNote(dataUserId, note)
 {
-    firebase.database().ref('/users/' + userId + '/notes/' + dataUserId).set(note);
+    console.log('SetNote \nSetting note : ' + note + '\nfor : ' + dataUserId);
     //Define the operation
     var operation = {
         operation: "SET",
