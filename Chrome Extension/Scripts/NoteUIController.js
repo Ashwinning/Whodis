@@ -54,18 +54,24 @@ function WhodisTemplate(textToBeInserted)
     Params:
     `injectInto`: a class, id etc. which the widget is appended to
     `twitterID` : the Twitter UID to inject the note for.
+    `topMargin` : OPTIONAL - adds a top margin to the widget.
 */
-function InjectWidget(injectInto, twitterID)
+function InjectWidget(injectInto, twitterID, topMargin)
 {
-    var loader = '<div id="whodis-loading-spinner"><center><img src="https://abs.twimg.com/a/1482872295/img/t1/spinner-rosetta-blue-26x26.gif"></center></div>';
-    profileCardObject.find(injectInto).append(loader);
+    topMargin = topMargin || 0; //topMargin will either be set to topMargin or 0. (Optional param)
+
+    var loader = '<div id="whodis-loading-spinner" style="margin-top:'+topMargin+';"><center><img src="https://abs.twimg.com/a/1482872295/img/t1/spinner-rosetta-blue-26x26.gif"></center></div>';
+    $(injectInto).append(loader);
     //Use the GetInjection callback
-    GetInjection(dataUserId, function(response)
+    GetInjection(twitterID, function(response)
     {
+        var injectionCode = $(response);
         //Remove spinner
         $('#whodis-loading-spinner').remove();
         //Add the WhoDis HTML
-        profileCardObject.find(injectInto).append(response);
-        MakeInlineEditable(twitterID);
+        $(injectInto).append(injectionCode);
+        injectionCode.css('margin-top', topMargin);
+        MakeInlineEditable(twitterID, injectionCode);
+
     });
 }

@@ -12,10 +12,10 @@ var replaceWith = $('<textarea class="whodis-textarea" style="max-height: 300px;
     To be run after every time a note/form is injected
     Accepts a twitterID/dataUserId which uniquely identifies the user this note is being set for.
     When changes are made, they're automatically saved.
+    Params:
+    twitterID   : The twitterID for which this this being made editable.
 */
-function MakeInlineEditable(twitterID)
 {
-    $('.whodis-note').inlineEdit(replaceWith, connectWith, twitterID);
 }
 
 /*

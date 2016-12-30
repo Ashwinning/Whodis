@@ -29,6 +29,7 @@
     box-shadow: none;
     width: 96%;
     resize: none;
+    background: transparent;
 }
 
 .whodis-textarea:focus

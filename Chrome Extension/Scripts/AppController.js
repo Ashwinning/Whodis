@@ -42,6 +42,15 @@ function OnURLChange(tabId, changeInfo, tab)
 {
     //console.log(tab.url)
     console.log('Is user profile : ' + IsUserProfile(tab.url));
+    //If this is a user profile.
+    if(IsUserProfile(tab.url))
+    {
+        //get the twitter ID for the page (currently taking the data-user-id from `.ProfileNav`)
+        var dataUserId = $('.ProfileNav').attr('data-user-id');
+        console.log("Got uid : " + dataUserId + ", injecting widget.");
+        InjectWidget('.ProfileHeaderCard', dataUserId, '30px');
+    }
+
 }
 
 /*
@@ -54,5 +63,5 @@ function OnURLChange(tabId, changeInfo, tab)
 */
 function OnProfileShown(profileCardObject, dataUserId, dataAssociatedTweetId, mutations)
 {
-    InjectWidget('.profile-card', dataUserId);
+    InjectWidget(profileCardObject.find('.profile-card'), dataUserId);
 }
