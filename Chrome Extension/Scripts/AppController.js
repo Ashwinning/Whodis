@@ -7,6 +7,10 @@
     Public/Global variables
 */
 
+// All the users (twitter IDs) on which the logged in user has saved notes.
+var noteList;
+
+
 //On Start/Page Load
 $(document).ready(function()
 {
@@ -19,7 +23,7 @@ $(document).ready(function()
 
     GetNoteList(function(keys)
     {
-        console.log(keys);
+        noteList = keys;
     });
 
 });
