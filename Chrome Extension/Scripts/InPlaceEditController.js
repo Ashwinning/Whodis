@@ -14,8 +14,11 @@ var replaceWith = $('<textarea class="whodis-textarea" style="max-height: 300px;
     When changes are made, they're automatically saved.
     Params:
     twitterID   : The twitterID for which this this being made editable.
+    elem        : The widget (jQuery object) inside which the note has to be made editable.
 */
+function MakeInlineEditable(twitterID, widget)
 {
+    widget.find('.whodis-note').inlineEdit(replaceWith, connectWith, twitterID);
 }
 
 /*
