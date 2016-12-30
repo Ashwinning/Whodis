@@ -65,7 +65,7 @@ http://ryanmorr.com/using-mutation-observers-to-watch-for-element-availability/
 */
 function InitializeMutationObservers()
 {
-    //TweetObserver();
+    TweetObserver();
     ProfileHoverObserver();
 }
 
@@ -111,8 +111,11 @@ function TweetObserver()
             // element added to DOM
                 mutation.addedNodes.forEach(function(node)
                 {
-                    if (typeof node != 'undefined') //Avoid spamming console with errors
+                    if (typeof node == undefined) //Avoid spamming console with errors
+                    {
+                        //console.log('undefined node, returning');
                         return; //equivalent of moving to the next
+                    }
 
                     /*
                         Universal check for all tweets begins here
@@ -131,7 +134,7 @@ function TweetObserver()
                             //If any of the lists contain the 'stream-item' class
                             listsInNode.each(function(index, liElement)
                             {
-                                if (typeof liElement != 'undefined' && liElement.classList.contains('stream-item'))
+                                if (typeof liElement != undefined && liElement.classList.contains('stream-item'))
                                 {
                                     liElement.setAttribute("style", "background:blue");
                                 }

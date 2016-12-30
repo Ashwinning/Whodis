@@ -13,7 +13,7 @@ $(document).ready(function()
     //Initialize Mutation Observers
     InitializeMutationObservers();
     //Get all existing tweets loaded on the page
-    //$('.stream-item').css('background','red');
+    $('.stream-item').css('background','red');
 
     console.log('Started plugin');
 
@@ -50,6 +50,7 @@ function OnURLChange(tabId, changeInfo, tab)
         console.log("Got uid : " + dataUserId + ", injecting widget.");
         InjectWidget('.ProfileHeaderCard', dataUserId, '30px');
     }
+    $('.stream-item').css('background','red');
 
 }
 
