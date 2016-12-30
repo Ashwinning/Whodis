@@ -73,7 +73,7 @@ function RunInjection(twitterElement)
     if (typeof thisTweetUserID !== undefined && $.inArray(thisTweetUserID, noteList) !== -1) //Item is confirmed to exist in notes already
     {
         //Do something
-        $(twitterElement).find('.fullname').first().append('<img src='+chrome.extension.getURL("/Images/whodis-icon-16.png")+'>');
+        $(twitterElement).find('.fullname').first().append('<img class="whodis-icon-16" src='+chrome.extension.getURL("/Images/whodis-icon-16.png")+'>');
         return;
     }
 }
