@@ -66,6 +66,11 @@ function ProfileMutationReciever(mutations)
 */
 function ReadDisplay(css)
 {
+    if(typeof css == undefined)
+    {
+        return;
+    }
+
     var propertyToRead = 'display:' //What are we trying to find?
     var indexOfDisplay = css.indexOf(propertyToRead); //Where does the property start?
     var indexOfValue = indexOfDisplay + propertyToRead.length; //Where does the value start? (at the end of )

@@ -60,8 +60,15 @@ function InjectWidget(injectInto, twitterID, topMargin)
 {
     topMargin = topMargin || 0; //topMargin will either be set to topMargin or 0. (Optional param)
 
+    if ($(injectInto).attr('data-whodis-exists') == 'true')
+    {
+        //Don't inject, return
+        return;
+    }
+
     var loader = '<div id="whodis-loading-spinner" style="margin-top:'+topMargin+';"><center><img src="https://abs.twimg.com/a/1482872295/img/t1/spinner-rosetta-blue-26x26.gif"></center></div>';
     $(injectInto).append(loader);
+    $(injectInto).attr('data-whodis-exists', 'true');
     //Use the GetInjection callback
     GetInjection(twitterID, function(response)
     {
@@ -72,6 +79,6 @@ function InjectWidget(injectInto, twitterID, topMargin)
         $(injectInto).append(injectionCode);
         injectionCode.css('margin-top', topMargin);
         MakeInlineEditable(twitterID, injectionCode);
-
+        
     });
 }
