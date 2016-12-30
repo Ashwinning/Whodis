@@ -67,13 +67,20 @@ function ParseTweet(twitterElement)
 */
 function RunInjection(twitterElement)
 {
+    if ($(twitterElement).attr('data-whodis-exists') == 'true')
+    {
+        //Don't inject, return
+        return;
+    }
+
     var thisTweetUserID = ParseTweet(twitterElement).userID;
     //console.log('This tweet ID : ' + thisTweetUserID);
     //$(twitterElement).css('background-color', 'grey');
     if (typeof thisTweetUserID !== undefined && $.inArray(thisTweetUserID, noteList) !== -1) //Item is confirmed to exist in notes already
     {
-        //Do something
+        //Add our icon
         $(twitterElement).find('.fullname').first().append('<img class="whodis-icon-16" src='+chrome.extension.getURL("/Images/whodis-icon-16.png")+'>');
+        $(twitterElement).attr('data-whodis-exists', 'true');
         return;
     }
 }
