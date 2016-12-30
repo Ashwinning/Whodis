@@ -70,3 +70,41 @@ function ContainsTwitter(urlstring)
         return false;
     }
 }
+
+/*
+Checks is the given page is a user's profile
+*/
+function IsUserProfile(urlstring)
+{
+    /*
+        Checks if URL has twitter in it.
+        If it does, make sure the forward slash after the domain
+        is the last one.
+        If there is still another one, make sure there's no text after it.
+    */
+    console.log("URL recieved = " + urlstring);
+    var checkString = 'https://twitter.com/';
+    var indexOfCheck = urlstring.indexOf(checkString);
+    if (indexOfCheck != -1) //Is twitter URL
+    {
+        //Get string after checkString
+        var remainder = urlstring.substring(checkString.length, urlstring.length);
+        console.log('remainder = ' + remainder);
+        if (remainder.indexOf('/') == -1 && remainder.length > 0) //if there are no slashes but some text is there
+        {
+            return true;
+        }
+        else if (remainder.indexOf('/') > -1 && remainder.indexOf('/') == remainder.length - 1) // if there is a slash, but it's the last character
+        {                                                                                       // if there's a slash before, the second condition
+            return true;                                                                        // will eval to false.
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
