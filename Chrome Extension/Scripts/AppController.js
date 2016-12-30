@@ -17,13 +17,17 @@ $(document).ready(function()
     //Initialize Mutation Observers
     InitializeMutationObservers();
     //Get all existing tweets loaded on the page
-    $('.stream-item').css('background','red');
+    Firehose($('.stream-item'));
 
     console.log('Started plugin');
 
     GetNoteList(function(keys)
     {
+        console.log('GetNoteList got keys')
+        console.log(keys);
         noteList = keys;
+        //Trigger tweet icon injection.
+        StartParsing();
     });
 
 });
@@ -54,7 +58,7 @@ function OnURLChange(tabId, changeInfo, tab)
         console.log("Got uid : " + dataUserId + ", injecting widget.");
         InjectWidget('.ProfileHeaderCard', dataUserId, '30px');
     }
-    $('.stream-item').css('background','red');
+    Firehose($('.stream-item'));
 
 }
 

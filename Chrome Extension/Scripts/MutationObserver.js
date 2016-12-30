@@ -123,7 +123,8 @@ function TweetObserver()
                     if (node.classList.contains('stream-item'))
                     {
                         //Top level node inserted is stream-item! No need to iterate more
-                        node.setAttribute("style", "background:blue");
+                        //node.setAttribute("style", "background:blue");
+                        Firehose($(node));
                     }
                     else //check if one of the child classes contains 'stream-item'
                     {
@@ -136,7 +137,8 @@ function TweetObserver()
                             {
                                 if (typeof liElement != undefined && liElement.classList.contains('stream-item'))
                                 {
-                                    liElement.setAttribute("style", "background:blue");
+                                    //liElement.setAttribute("style", "background:blue");
+                                    Firehose($(liElement));
                                 }
                             });
                         }
