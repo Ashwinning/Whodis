@@ -5,6 +5,43 @@
 
 var emptyNotePrompt = "➕ Add a note!";
 
+
+/*
+    THE PUBLIC FUNCTION OF THIS API
+    Injects the actual widget. (incl. loader)
+    Params:
+    `injectInto`: a class, id etc. which the widget is appended to
+    `twitterID` : the Twitter UID to inject the note for.
+    `topMargin` : OPTIONAL - adds a top margin to the widget.
+*/
+function InjectWidget(injectInto, twitterID, topMargin)
+{
+    topMargin = topMargin || 0; //topMargin will either be set to topMargin or 0. (Optional param)
+
+    if ($(injectInto).attr('data-whodis-exists') == 'true')
+    {
+        //Don't inject, return
+        return;
+    }
+
+    var loader = '<div id="whodis-loading-spinner" style="margin-top:'+topMargin+';"><center><img src="https://abs.twimg.com/a/1482872295/img/t1/spinner-rosetta-blue-26x26.gif"></center></div>';
+    $(injectInto).append(loader);
+    $(injectInto).attr('data-whodis-exists', 'true');
+    //Use the GetInjection callback
+    GetInjection(twitterID, function(response)
+    {
+        var injectionCode = $(response);
+        //Remove spinner
+        $('#whodis-loading-spinner').remove();
+        //Add the WhoDis HTML
+        $(injectInto).append(injectionCode);
+        injectionCode.css('margin-top', topMargin);
+        MakeInlineEditable(twitterID, injectionCode);
+    });
+}
+
+
+
 /*
     Returns the HTML to be injected
 */
@@ -45,40 +82,4 @@ function WhodisTemplate(textToBeInserted)
     var borderColorForNoteWrapper = $('.tweet-btn').css("background-color");
     //console.log("background-color is " + borderColorForNoteWrapper);
     return '<div class="whodis-holder"><img src="'+ chrome.extension.getURL("/Images/whodis-tiny-logo.png") +'"><div class="note-wrapper" style="border-color:'+ borderColorForNoteWrapper +'">'+ textToBeInserted +'</div></div>';
-}
-
-
-/*
-    THE PUBLIC FUNCTION OF THIS API
-    Injects the actual widget. (incl. loader)
-    Params:
-    `injectInto`: a class, id etc. which the widget is appended to
-    `twitterID` : the Twitter UID to inject the note for.
-    `topMargin` : OPTIONAL - adds a top margin to the widget.
-*/
-function InjectWidget(injectInto, twitterID, topMargin)
-{
-    topMargin = topMargin || 0; //topMargin will either be set to topMargin or 0. (Optional param)
-
-    if ($(injectInto).attr('data-whodis-exists') == 'true')
-    {
-        //Don't inject, return
-        return;
-    }
-
-    var loader = '<div id="whodis-loading-spinner" style="margin-top:'+topMargin+';"><center><img src="https://abs.twimg.com/a/1482872295/img/t1/spinner-rosetta-blue-26x26.gif"></center></div>';
-    $(injectInto).append(loader);
-    $(injectInto).attr('data-whodis-exists', 'true');
-    //Use the GetInjection callback
-    GetInjection(twitterID, function(response)
-    {
-        var injectionCode = $(response);
-        //Remove spinner
-        $('#whodis-loading-spinner').remove();
-        //Add the WhoDis HTML
-        $(injectInto).append(injectionCode);
-        injectionCode.css('margin-top', topMargin);
-        MakeInlineEditable(twitterID, injectionCode);
-        
-    });
 }

@@ -48,18 +48,20 @@ $.fn.inlineEdit = function(replaceWith, connectWith, twitterID)
         autosize(document.querySelectorAll('.whodis-textarea')); //Make textarea autosizable
         replaceWith.blur(function()
         {
-            if ($(this).val() != "")
+            if ($(this).val() != "" && $(this).val() != elem.text())
             {
                 //connectWith.val($(this).val()).change();
                 elem.text($(this).val());
+                
+                //Set note in database
+                SetNote(twitterID, {note: elem.text()});
+                //console.log("Note for " + twitterID + " was set to " + elem.text());
             }
             $('.whodis-textarea').val(''); //Clear textarea
             $(this).remove();
             elem.show();
             //alert(elem.text()); //Call function here
-            //Set note in database
-            SetNote(twitterID, {note: elem.text()});
-            //console.log("Note for " + twitterID + " was set to " + elem.text());
+
 
         });
     });
