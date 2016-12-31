@@ -55,7 +55,7 @@ function StartParsing()
 function ParseTweet(twitterElement)
 {
     //Mine data
-    var userID = $(twitterElement).find('div').first().attr('data-user-id');
+    var userID = $(twitterElement).find('div.tweet').first().attr('data-user-id');
     //console.log('Parsed : ' + userID);
     //Remove from array
     RemoveFromArray(twitterElement, tweetQueue);
@@ -75,7 +75,7 @@ function RunInjection(twitterElement)
 
     var thisTweetUserID = ParseTweet(twitterElement).userID;
     //console.log('This tweet ID : ' + thisTweetUserID);
-    //$(twitterElement).css('background-color', 'grey');
+    $(twitterElement).css('background-color', 'grey'); //test if tweet was covered.
     if (typeof thisTweetUserID !== undefined && $.inArray(thisTweetUserID, noteList) !== -1) //Item is confirmed to exist in notes already
     {
         //Add our icon
