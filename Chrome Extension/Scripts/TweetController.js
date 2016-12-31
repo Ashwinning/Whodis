@@ -75,7 +75,7 @@ function RunInjection(twitterElement)
 
     var thisTweetUserID = ParseTweet(twitterElement).userID;
     //console.log('This tweet ID : ' + thisTweetUserID);
-    $(twitterElement).css('background-color', 'grey'); //test if tweet was covered.
+    //$(twitterElement).css('background-color', 'grey'); //test if tweet was covered.
     if (typeof thisTweetUserID !== undefined && $.inArray(thisTweetUserID, noteList) !== -1) //Item is confirmed to exist in notes already
     {
         //Add our icon
