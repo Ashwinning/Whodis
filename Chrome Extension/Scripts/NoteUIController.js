@@ -50,7 +50,8 @@ function GetInjection(twitterID, callback)
     console.log('Getting injection FOR : ' + twitterID);
     GetNote(twitterID, function(response)
     {
-        console.log('NoteUI GetNote response : ' + response);
+        console.log('NoteUI GetNote response : ');
+        console.log(response);
         var textValue;
         if (response === undefined || response == null)
         {
@@ -58,7 +59,7 @@ function GetInjection(twitterID, callback)
         }
         else
         {
-            textValue = response;
+            textValue = response.note;
         }
         console.log ('Injecting note \ntextValue = ' + textValue);
         callback(WhodisTemplate(NoteTextTemplate(textValue)));

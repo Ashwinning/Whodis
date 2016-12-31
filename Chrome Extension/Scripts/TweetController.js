@@ -24,8 +24,8 @@ function Firehose(twitterElements)
             return;
         }
         tweetQueue.push(twitterElement);
-        console.log ('Adding a tweet, Queue length is ' + tweetQueue.length);
-        console.log(twitterElement);
+        //console.log ('Adding a tweet, Queue length is ' + tweetQueue.length);
+        //console.log(twitterElement);
         if(canParse)
         {
             StartParsing();
@@ -36,7 +36,7 @@ function Firehose(twitterElements)
 function StartParsing()
 {
     canParse = true;
-    console.log('Starting tweet parsing.');
+    //console.log('Starting tweet parsing.');
     $.each(tweetQueue, function( index, tweet )
     {
         //Do something
@@ -56,7 +56,7 @@ function ParseTweet(twitterElement)
 {
     //Mine data
     var userID = $(twitterElement).find('div').first().attr('data-user-id');
-    console.log('Parsed : ' + userID);
+    //console.log('Parsed : ' + userID);
     //Remove from array
     RemoveFromArray(twitterElement, tweetQueue);
     return {userID: userID};

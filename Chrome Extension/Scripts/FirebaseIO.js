@@ -120,7 +120,7 @@ function DatabaseOnce(path, sendResponse)
     firebase.database().ref('/users/' + userId + path).once('value').then(function(snapshot)
     {
         console.log('DatabaseOnce recieved response : ' + snapshot.val());
-        sendResponse({value: snapshot.val()}); //TODO : pass val instead of json.
+        sendResponse(snapshot.val()); //TODO : pass val instead of json.
     });
 }
 

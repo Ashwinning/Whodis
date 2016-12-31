@@ -19,8 +19,8 @@ function GetNote(dataUserId, callback)
     //Execute the operation
     chrome.runtime.sendMessage(operation, function(response)
     {
-        console.log('GetNote recieved a response: ' + response.value);
-        callback(response.value);
+        console.log('GetNote recieved a response: ' + response);
+        callback(response);
     });
 }
 
@@ -35,7 +35,7 @@ function GetNote(dataUserId, callback)
 */
 function SetNote(dataUserId, data)
 {
-    if (note == emptyNotePrompt)
+    if (data.note == emptyNotePrompt)
     {
         //Don't do anything.
         return;
@@ -65,7 +65,7 @@ function SetNote(dataUserId, data)
 */
 function UpdateNote(dataUserId, data)
 {
-    if (note == emptyNotePrompt)
+    if (data.note == emptyNotePrompt)
     {
         //Don't do anything.
         return;
