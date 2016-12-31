@@ -24,23 +24,58 @@ function GetNote(dataUserId, callback)
     });
 }
 
+
 /*
     dataUserId is the Twitter UID.
+    data is json.
+    Structure:
+        {
+            note : 'the note' // the note
+        }
 */
-function SetNote(dataUserId, note)
+function SetNote(dataUserId, data)
 {
     if (note == emptyNotePrompt)
     {
         //Don't do anything.
         return;
     }
-
-    console.log('SetNote \nSetting note : ' + note + '\nfor : ' + dataUserId);
+    console.log('SetNote \nSetting data : ' + data + '\nfor : ' + dataUserId);
     //Define the operation
     var operation = {
         operation: "SET",
         path: "/notes/" + dataUserId,
-        value: note
+        value: data
+    }
+    //Execute the operation
+    return chrome.runtime.sendMessage(operation, function(response)
+    {
+        return response;
+    });
+}
+
+
+/*
+    dataUserId is the Twitter UID.
+    data is json.
+    Structure:
+        {
+            note : 'the note' // the note
+        }
+*/
+function UpdateNote(dataUserId, data)
+{
+    if (note == emptyNotePrompt)
+    {
+        //Don't do anything.
+        return;
+    }
+    console.log('UpdateNote \nUpdating data : ' + data + '\nfor : ' + dataUserId);
+    //Define the operation
+    var operation = {
+        operation: "UPDATE",
+        path: "/notes/" + dataUserId,
+        value: data
     }
     //Execute the operation
     return chrome.runtime.sendMessage(operation, function(response)

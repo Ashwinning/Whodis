@@ -26,6 +26,14 @@
                 value: {theJSONpayload: "Or string which you'd like to set here"}
             }
 
+        TO PERFORM AN UPDATE OPERATION:
+
+            {
+                operation: "UPDATE",
+                path: "/the/path/where/you/want/to/put/this/stuff",
+                value: {theJSONpayload: "Or string which you'd like to set here"}
+            }
+
         TO PERFORM A ONCE OPERATION: (To get stuff)
             {
                 operation: "ONCE",
@@ -56,6 +64,11 @@ function(request, sender, sendResponse)
         DatabaseSet(request.path, request.value);
     }
 
+    if (request.operation.toUpperCase() == "UPDATE")
+    {
+        DatabaseUpdate(request.path, request.value);
+    }
+
     if (request.operation.toUpperCase() == "ONCE")
     {
         DatabaseOnce(request.path, sendResponse);
@@ -73,12 +86,27 @@ function(request, sender, sendResponse)
     Calls `set()` on the database.
     Can only set data for the current user (under `'/users/' + userId`).
     Accepts a `path`, and a value which will be set there.
+    appends createdAt to the JSON value.
 */
 function DatabaseSet(path, value)
 {
     console.log('DatabaseSet \nSetting note : ' + value + '\nat : ' + '/users/' + userId + path);
-    firebase.database().ref('/users/' + userId + path).set(value);
+    var dataRef = firebase.database().ref('/users/' + userId + path);
+    //Entry does not exist, set both `createdAt` & `updatedAt`
+    value['createdAt'] = firebase.database.ServerValue.TIMESTAMP;
+    value['updatedAt'] = firebase.database.ServerValue.TIMESTAMP;
+    dataRef.set(value);
 }
+
+function DatabaseUpdate(path, value)
+{
+    console.log('DatabaseSet \nUpdating note : ' + value + '\nat : ' + '/users/' + userId + path);
+    var dataRef = firebase.database().ref('/users/' + userId + path);
+    //Entry exists, set the `updatedAt`
+    value['updatedAt'] = firebase.database.ServerValue.TIMESTAMP;
+    dataRef.update(value);
+}
+
 
 /*
     Calls `once()` on the database.

@@ -58,7 +58,7 @@ $.fn.inlineEdit = function(replaceWith, connectWith, twitterID)
             elem.show();
             //alert(elem.text()); //Call function here
             //Set note in database
-            SetNote(twitterID, elem.text());
+            SetNote(twitterID, {note: elem.text()});
             //console.log("Note for " + twitterID + " was set to " + elem.text());
 
         });

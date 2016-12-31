@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Whodis",
+  "name": "Whodis (Alpha)",
   "description": "Allows you to privately add custom notes to twitter profiles.",
   "version": "0.1",
   "content_scripts":
