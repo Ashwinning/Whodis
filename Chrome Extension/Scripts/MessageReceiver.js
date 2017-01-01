@@ -38,9 +38,8 @@ chrome.runtime.onMessage.addListener(
 
     if (request.function == "OnAuthStateChange")
     {
-        url = request.args.t.url;
-        //console.log(url);
-
+        //console.log(request);
+        IsUserLoggedIn(request.args.state);
     }
 
   });

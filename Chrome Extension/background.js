@@ -25,8 +25,19 @@ function initApp() {
   // Listen for auth state changes.
   firebase.auth().onAuthStateChanged(function(user) {
     console.log('User state change detected from the Background script of the Chrome Extension:', user);
-    userId = firebase.auth().currentUser.uid;
-    console.log('current ' + userId);
+    if (firebase.auth().currentUser == null)
+    {
+        //User is not logged in
+        console.log('No user logged in');
+        SendMessageToActiveTab({function: "OnAuthStateChange", args: {state: false}});
+    }
+    else
+    {
+        //User is logged in
+        userId = firebase.auth().currentUser.uid;
+        console.log('current ' + userId);
+        SendMessageToActiveTab({function: "OnAuthStateChange", args: {state: true}});
+    }
   });
   //Set firebase refs in AppController
   //OnFirebaseInit();
@@ -34,6 +45,7 @@ function initApp() {
 
 window.onload = function() {
   initApp();
+  console.log();
 };
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)

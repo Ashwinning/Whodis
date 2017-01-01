@@ -11,7 +11,7 @@
     "js": ["jquery-1.12.0.min.js","script.js", "/Scripts/MutationObserver.js", "templates.js",
         "/Scripts/AppController.js", "/Scripts/URLController.js", "/Scripts/ProfileCardController.js", "autosize.min.js",
         "/Scripts/InPlaceEditController.js", "/Scripts/NoteUIController.js", "/Scripts/NoteIOController.js",
-        "/Scripts/TweetController.js", "/Scripts/MessageReciever.js", "/Scripts/UserController.js"],
+        "/Scripts/TweetController.js", "/Scripts/MessageReceiver.js", "/Scripts/UserController.js"],
     "css": ["/CSS/WhodisInject.css"]
     }
   ],
