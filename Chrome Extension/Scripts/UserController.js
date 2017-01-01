@@ -15,7 +15,7 @@ var isLoggedIn = false;
 function IsUserLoggedIn(value)
 {
     isLoggedIn = value;
-    console.log('Logged in : ' + value );
+    //console.log('Logged in : ' + value );
 }
 
 

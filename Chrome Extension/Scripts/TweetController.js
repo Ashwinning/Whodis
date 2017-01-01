@@ -99,3 +99,18 @@ function RemoveFromArray(element, arr)
         arr.splice( index, 1 );
     }
 }
+
+
+function UpdateIconInjections()
+{
+    //get updated note list.
+    //TODO : append ID to local notelist and save a DB call.
+    GetNoteList(function(keys)
+    {
+        noteList = keys;
+        //Add all items to the firehose.
+        Firehose($('.stream-item'));
+        //Trigger tweet icon injection.
+        StartParsing();
+    });
+}

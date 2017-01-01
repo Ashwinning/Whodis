@@ -23,14 +23,15 @@ $(document).ready(function()
 
     GetNoteList(function(keys)
     {
-        console.log('GetNoteList got keys')
-        console.log(keys);
+        //console.log('GetNoteList got keys')
+        //console.log(keys);
         noteList = keys;
         //Trigger tweet icon injection.
         StartParsing();
     });
 
 });
+
 
 
 /*

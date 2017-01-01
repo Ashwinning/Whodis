@@ -37,13 +37,13 @@ function ProfileMutationReciever(mutations)
     if (cardDisplay == "block")
     {
         cardIsVisible = true;
-        console.log('isVisible');
+        //console.log('isVisible');
     }
     else if (cardDisplay == "none")
     {
         cardIsVisible = false;
         cardWasVisible = false; //Set the state so we know the card had been made invisible.
-        console.log('isNotVisible');
+        //console.log('isNotVisible');
     }
 
     /*

@@ -10,7 +10,7 @@
 */
 function GetNote(dataUserId, callback)
 {
-    console.log('GETNOTE : Getting note');
+    //console.log('GETNOTE : Getting note');
     //Define the operation
     var operation = {
         operation: "ONCE",
@@ -19,7 +19,7 @@ function GetNote(dataUserId, callback)
     //Execute the operation
     chrome.runtime.sendMessage(operation, function(response)
     {
-        console.log('GetNote recieved a response: ' + response);
+        //console.log('GetNote recieved a response: ' + response);
         callback(response);
     });
 }
@@ -40,7 +40,7 @@ function SetNote(dataUserId, data)
         //Don't do anything.
         return;
     }
-    console.log('SetNote \nSetting data : ' + data + '\nfor : ' + dataUserId);
+    //console.log('SetNote \nSetting data : ' + data + '\nfor : ' + dataUserId);
     //Define the operation
     var operation = {
         operation: "SET",
@@ -70,7 +70,7 @@ function UpdateNote(dataUserId, data)
         //Don't do anything.
         return;
     }
-    console.log('UpdateNote \nUpdating data : ' + data + '\nfor : ' + dataUserId);
+    //console.log('UpdateNote \nUpdating data : ' + data + '\nfor : ' + dataUserId);
     //Define the operation
     var operation = {
         operation: "UPDATE",
@@ -93,7 +93,7 @@ function UpdateNote(dataUserId, data)
 function GetNoteList(callback)
 {
     //Get logged in user's current token
-    console.log('Getting current user\'s token.');
+    //console.log('Getting current user\'s token.');
     //Define the operation
     var operation = {
         operation: "TOKEN"
@@ -102,8 +102,8 @@ function GetNoteList(callback)
     chrome.runtime.sendMessage(operation, function(response)
     {
         //Once we got the token
-        console.log('NoteIO got token response:');
-        console.log(response);
+        //console.log('NoteIO got token response:');
+        //console.log(response);
         var userId = response.uid;
         var token = response.token;
         var url = 'https://whodis-6326a.firebaseio.com/users/'+userId+'/notes.json?shallow=true&auth='+token;

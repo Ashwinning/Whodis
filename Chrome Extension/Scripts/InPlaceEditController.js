@@ -72,7 +72,7 @@ $.fn.inlineEdit = function(replaceWith, connectWith, twitterID)
                     SetNote(twitterID, {note: elem.text()});
                     //console.log("Note for " + twitterID + " was set to " + elem.text());
                     //Since a set note was called, run the whodis icon injection again to reflect changes.
-                    Firehose($('.stream-item'));
+                    UpdateIconInjections();
                 }
 
             }

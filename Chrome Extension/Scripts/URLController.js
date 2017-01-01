@@ -55,14 +55,14 @@ function IsUserProfile(urlstring)
         is the last one.
         If there is still another one, make sure there's no text after it.
     */
-    console.log("URL recieved = " + urlstring);
+    //console.log("URL recieved = " + urlstring);
     var checkString = 'https://twitter.com/';
     var indexOfCheck = urlstring.indexOf(checkString);
     if (indexOfCheck != -1) //Is twitter URL
     {
         //Get string after checkString
         var remainder = urlstring.substring(checkString.length, urlstring.length);
-        console.log('remainder = ' + remainder);
+        //console.log('remainder = ' + remainder);
         if (remainder.indexOf('/') == -1 && remainder.length > 0) //if there are no slashes but some text is there
         {
             return true;
