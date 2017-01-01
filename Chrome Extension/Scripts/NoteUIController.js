@@ -47,12 +47,16 @@ function InjectWidget(injectInto, twitterID, topMargin)
 */
 function GetInjection(twitterID, callback)
 {
-    //If the user is not logged in
-    if (!isLoggedIn)
+
+    CheckUserAuth(function(isAuthenticated)
     {
-        callback(WhodisTemplate(PromptSignIn()));
-        return;
-    }
+        //If the user is not logged in
+        if (!isAuthenticated)
+        {
+            callback(WhodisTemplate(PromptSignIn()));
+            return;
+        }
+    });
     // Else if the user is logged in...
 
     console.log('Getting injection FOR : ' + twitterID);

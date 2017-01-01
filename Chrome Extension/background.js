@@ -70,9 +70,19 @@ function SetUserState()
 */
 function SendMessageToActiveTab(request)
 {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, request, function(response) {
-        //console.log(response.farewell);
-      });
+    console.log('Sending message to active tab. function : ' + request.function);
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs)
+    {
+        console.log('Tabs query length : ' + tabs.length);
+        if (tabs.length < 1 && request.function == 'OnAuthStateChange')
+        {
+            console.log('trying again for request ' + request.function);
+            //try infinitely
+            SendMessageToActiveTab(request);
+        }
+        chrome.tabs.sendMessage(tabs[0].id, request, function(response)
+        {
+            //console.log(response.farewell);
+        });
     });
 }

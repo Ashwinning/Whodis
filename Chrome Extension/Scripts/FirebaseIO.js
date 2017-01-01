@@ -45,6 +45,11 @@
                 operation: "TOKEN"
             }
 
+        TO GET THE AUTHENTICATION STATUS OF A USER
+            {
+                operation: "AUTH"
+            }
+
 
 */
 
@@ -79,6 +84,12 @@ function(request, sender, sendResponse)
     {
         GetToken(sendResponse);
         return true; //Indicates that we'll call sendResponse() asynchronously.
+    }
+
+    if (request.operation.toUpperCase() == "AUTH")
+    {
+        GetAuth(sendResponse);
+        return true;
     }
 });
 
@@ -140,4 +151,18 @@ function GetToken(sendResponse)
         console.log('FirebaseIO got data \nUID: ' + userId + '\nToken: ' + data );
         sendResponse({uid: userId, token: data});
     });
+}
+
+function GetAuth(sendResponse)
+{
+    if (firebase.auth().currentUser == null)
+    {
+        //User is not logged in
+        sendResponse(false);
+    }
+    else
+    {
+        //User is logged in
+        sendResponse(true);
+    }
 }

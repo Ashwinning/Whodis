@@ -17,3 +17,17 @@ function IsUserLoggedIn(value)
     isLoggedIn = value;
     console.log('Logged in : ' + value );
 }
+
+
+function CheckUserAuth(callback)
+{
+    //Define the operation
+    var operation = {
+        operation: "AUTH"
+    }
+    //Execute the operation
+    chrome.runtime.sendMessage(operation, function(response)
+    {
+        callback(response);
+    });
+}
