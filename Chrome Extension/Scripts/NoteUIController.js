@@ -10,9 +10,9 @@ var emptyNotePrompt = "➕ Add a note!";
     THE PUBLIC FUNCTION OF THIS API
     Injects the actual widget. (incl. loader)
     Params:
-    `injectInto`: a class, id etc. which the widget is appended to
-    `twitterID` : the Twitter UID to inject the note for.
-    `topMargin` : OPTIONAL - adds a top margin to the widget.
+        `injectInto`: a class, id etc. which the widget is appended to
+        `twitterID` : the Twitter UID to inject the note for.
+        `topMargin` : OPTIONAL - adds a top margin to the widget.
 */
 function InjectWidget(injectInto, twitterID, topMargin)
 {
@@ -47,6 +47,14 @@ function InjectWidget(injectInto, twitterID, topMargin)
 */
 function GetInjection(twitterID, callback)
 {
+    //If the user is not logged in
+    if (!isLoggedIn)
+    {
+        callback(WhodisTemplate(PromptSignIn()));
+        return;
+    }
+    // Else if the user is logged in...
+
     console.log('Getting injection FOR : ' + twitterID);
     GetNote(twitterID, function(response)
     {
@@ -66,6 +74,15 @@ function GetInjection(twitterID, callback)
     });
 
 }
+
+/*
+    Returns HTML code asking user to sign in.
+*/
+function PromptSignIn()
+{
+    return "⚠️ Please sign in first by clicking on the chrome extension's icon.";
+}
+
 
 /*
     Inner template which makes the note in-place-replaceable.
