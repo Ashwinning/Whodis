@@ -42,10 +42,17 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
     SendMessageToActiveTab({function: "OnURLChange", args: {ti: tabId, ci: changeInfo, t: tab}});
 });
 
-function SendMessageToActiveTab(object)
+
+/*
+    Sends a message to the active tab.
+    Requests are handled by MessageReciever.js.
+
+    Request format is defined in MessageReciever.js
+*/
+function SendMessageToActiveTab(request)
 {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, object, function(response) {
+      chrome.tabs.sendMessage(tabs[0].id, request, function(response) {
         //console.log(response.farewell);
       });
     });

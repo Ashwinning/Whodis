@@ -98,6 +98,12 @@ function DatabaseSet(path, value)
     dataRef.set(value);
 }
 
+/*
+    Calls `update()` on the database.
+    Can only set data for the current user (under `'/users/' + userId`).
+    Accepts a `path`, and JSON which will be updated there.
+    Edits updatedAt in the JSON value.
+*/
 function DatabaseUpdate(path, value)
 {
     console.log('DatabaseSet \nUpdating note : ' + value + '\nat : ' + '/users/' + userId + path);
