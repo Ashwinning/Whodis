@@ -22,9 +22,31 @@ firebase.initializeApp(config);
  * When signed in, we also authenticate to the Firebase Realtime Database.
  */
 function initApp() {
-  // Listen for auth state changes.
-  firebase.auth().onAuthStateChanged(function(user) {
-    console.log('User state change detected from the Background script of the Chrome Extension:', user);
+    // Listen for auth state changes.
+    firebase.auth().onAuthStateChanged(function(user)
+    {
+        console.log('User state change detected from the Background script of the Chrome Extension:', user);
+        SetUserState();
+    });
+  //OnFirebaseInit();
+}
+
+window.onload = function()
+{
+    initApp();
+    SetUserState();
+};
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
+{
+    //console.log("Sending message"); //Doesn't show
+    SendMessageToActiveTab({function: "OnURLChange", args: {ti: tabId, ci: changeInfo, t: tab}});
+});
+
+
+function SetUserState()
+{
+    console.log('Setting user state');
     if (firebase.auth().currentUser == null)
     {
         //User is not logged in
@@ -38,22 +60,7 @@ function initApp() {
         console.log('current ' + userId);
         SendMessageToActiveTab({function: "OnAuthStateChange", args: {state: true}});
     }
-  });
-  //Set firebase refs in AppController
-  //OnFirebaseInit();
 }
-
-window.onload = function() {
-  initApp();
-  console.log();
-};
-
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab)
-{
-    //console.log("Sending message"); //Doesn't show
-    SendMessageToActiveTab({function: "OnURLChange", args: {ti: tabId, ci: changeInfo, t: tab}});
-});
-
 
 /*
     Sends a message to the active tab.

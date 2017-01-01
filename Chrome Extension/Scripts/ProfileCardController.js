@@ -66,7 +66,7 @@ function ProfileMutationReciever(mutations)
 */
 function ReadDisplay(css)
 {
-    if(typeof css == undefined)
+    if(typeof css === undefined)
     {
         return;
     }

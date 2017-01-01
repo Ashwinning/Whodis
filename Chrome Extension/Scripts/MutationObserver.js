@@ -111,7 +111,7 @@ function TweetObserver()
             // element added to DOM
                 mutation.addedNodes.forEach(function(node)
                 {
-                    if (typeof node == undefined) //Avoid spamming console with errors
+                    if (typeof node === undefined || typeof node.classList === undefined) //Avoid spamming console with errors
                     {
                         //console.log('undefined node, returning');
                         return; //equivalent of moving to the next

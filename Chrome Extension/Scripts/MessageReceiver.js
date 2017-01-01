@@ -21,7 +21,7 @@
 */
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    //console.log("got message");
+    console.log("MessageReceiver received a request. function: " + request.function);
     if (request.function == "OnURLChange")
     {
         url = request.args.t.url;
@@ -38,7 +38,7 @@ chrome.runtime.onMessage.addListener(
 
     if (request.function == "OnAuthStateChange")
     {
-        //console.log(request);
+        console.log(request);
         IsUserLoggedIn(request.args.state);
     }
 

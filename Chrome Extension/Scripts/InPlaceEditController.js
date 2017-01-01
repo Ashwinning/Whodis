@@ -22,7 +22,7 @@ function MakeInlineEditable(twitterID, widget)
 }
 
 /*
-    The Inline Edit class from http://www.egstudio.biz/tiny-inline-edit-plugin-for-jquery/
+    Extended the Inline Edit class from http://www.egstudio.biz/tiny-inline-edit-plugin-for-jquery/
 */
 $.fn.inlineEdit = function(replaceWith, connectWith, twitterID)
 {
@@ -71,7 +71,10 @@ $.fn.inlineEdit = function(replaceWith, connectWith, twitterID)
                     //Set note in database
                     SetNote(twitterID, {note: elem.text()});
                     //console.log("Note for " + twitterID + " was set to " + elem.text());
+                    //Since a set note was called, run the whodis icon injection again to reflect changes.
+                    Firehose($('.stream-item'));
                 }
+
             }
             $('.whodis-textarea').val(''); //Clear textarea
             $(this).remove();
