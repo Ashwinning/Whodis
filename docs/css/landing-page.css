@@ -171,6 +171,32 @@ footer {
 p.copyright {
     margin: 15px 0 0;
 }
+
 .notes-ul {
-    font-size: 18px;
+    font-size: 20px;
+}
+
+.notes-ul li{
+    margin-top: 10px;
+}
+
+.notes-ul li:first-child {
+    margin-top:0;
+}
+
+.alpha {
+    vertical-align: bottom;
+    color: #6a8697;
+}
+
+.alpha-big {
+    font-size: 100px;
+    margin-left: -15px;
+}
+
+.alpha-small {
+    display:inline-block;
+    font-size: 30px;
+    margin-left: -18px;
+    margin-top: 3px;
 }
