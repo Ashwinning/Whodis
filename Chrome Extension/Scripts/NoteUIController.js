@@ -59,7 +59,7 @@ function GetInjection(twitterID, callback)
     });
     // Else if the user is logged in...
 
-    console.log('Getting injection FOR : ' + twitterID);
+    //console.log('Getting injection FOR : ' + twitterID);
     GetNote(twitterID, function(response)
     {
         //console.log('NoteUI GetNote response : ');

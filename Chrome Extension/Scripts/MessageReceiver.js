@@ -22,7 +22,7 @@
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
 
-    console.log("MessageReceiver received a request. function: " + request.function);
+    //console.log("MessageReceiver received a request. function: " + request.function);
 
     /*
     //IDK why this refused to work.
